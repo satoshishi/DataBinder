@@ -94,6 +94,16 @@ namespace Binder
             }
         }
 
+        public DataBinder()
+        {
+
+        }
+
+        public DataBinder(IEqualityComparer<T> equalityComparer)
+        {
+            this.EqualityComparer = equalityComparer;
+        }
+
         public virtual IDisposable Subscribe(IObserver<T> observer)
         {
             if (isDisposed)
