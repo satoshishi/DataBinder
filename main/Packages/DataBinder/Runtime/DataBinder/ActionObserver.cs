@@ -15,25 +15,26 @@ namespace Binder
 
         public ActionObserver(Action<T> onNext, Action<Exception> onError, Action onCompleted)
         {
-            this.onNext=  onNext;
-            this.onError=  onError;
+            this.onNext = onNext;
+            this.onError = onError;
             this.onCompleted = onCompleted;
         }
 
         public ActionObserver(Action<T> onNext)
         {
-            this.onNext=  onNext;            
+            this.onNext = onNext;
         }
 
         public ActionObserver(Action<T> onNext, Action onCompleted)
         {
-            this.onNext=  onNext;
+            this.onNext = onNext;
             this.onCompleted = onCompleted;
-        }   
+        }
 
         public void OnCompleted()
         {
-            this?.onCompleted();
+            if (onCompleted != null)
+                onCompleted();
 
             onNext = null;
             onError = null;
@@ -42,12 +43,14 @@ namespace Binder
 
         public void OnError(Exception error)
         {
-            this?.onError(error);
+            if (onError != null)
+                onError(error);
         }
 
         public void OnNext(T value)
         {
-            this?.onNext(value);
+            if (onNext != null)
+                onNext(value);
         }
     }
 }
