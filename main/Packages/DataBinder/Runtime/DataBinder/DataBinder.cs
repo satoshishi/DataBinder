@@ -158,7 +158,7 @@ namespace Binder
             }
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             if (isDisposed) return;
 
